@@ -72,3 +72,4 @@ set "JAVA_OPT=%JAVA_OPT% --spring.config.location=%CUSTOM_SEARCH_LOCATIONS%"
 set "JAVA_OPT=%JAVA_OPT% --logging.config=%BASE_DIR%/conf/nacos-logback.xml"
 
 call "%JAVA%" %JAVA_OPT% nacos.nacos %*
+pause
