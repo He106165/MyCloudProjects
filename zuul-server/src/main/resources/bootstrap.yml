@@ -1,0 +1,64 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: zuul-server
+#  jackson:
+#    time-zone: GMT+8
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    default-property-inclusion: ALWAYS
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+zuul:
+  routes:
+    consumer:
+      path: /con/**
+      serviceId: consumerser
+#      strip-prefix: true
+    provider:
+      path: /pro/**
+      serviceId: providerser
+#      strip-prefix: true
+  #忽略所有的默认路由(即禁止通过service-id访问)，让所有路由配置均维护在配置文件中，以达到网关启动的时候就默认初始化好各个路由转发的负载均衡对象
+#  host:
+#    connect-timeout-millis: 2000
+#    socket-timeout-millis: 10000
+#  ignored-services: '*'
+#  host:
+#    connect-timeout-millis: 6000
+#    socket-timeout-millis: 6000
+#    max-per-route-connections: 2000
+#    max-total-connections: 10000
+#  ribbon-isolation-strategy: thread
+#  thread-pool:
+#    thread-pool-key-prefix: zuulgw
+#    use-separate-thread-pools: true
+#  FormBodyWrapperFilter:
+#    pre:
+#      disable: true
+#    # 开启保持原始请求参数编码
+#    #  force-original-query-string-encoding: true
+#    # 全局配置请求头参数传递,有效防止会话丢失,即由zuul转发至对应服务处理时,会将配置的请求头一同带过去,默认值"Cookie","Set-Cookie", "Authorization"
+#  sensitive-headers: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials
+#  semaphore:
+#    max-semaphores: 5000
+#proxy:
+#  consumerser:
+#    load-balanced: true
+#ribbon:
+#  #ribbon请求连接的超时时间- 限制3秒内必须请求到服务，并不限制服务处理的返回时间
+#  ConnectTimeout: 3000
+#  #请求处理的超时时间 下级服务响应最大时间,超出时间消费方（路由也是消费方）返回timeout
+#  ReadTimeout: 5000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
+#

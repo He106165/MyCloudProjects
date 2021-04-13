@@ -1,0 +1,37 @@
+server:
+  port: 18081
+
+spring:
+  application:
+    name: service-provider # 服务名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # 注册中心地址  # 默认是没有密码的
+      config:
+        server-addr: 127.0.0.1:8848  # config地址
+        enabled: true # 是否开启
+        refresh-enabled: true # 是否开启自动刷新
+        file-extension: yaml # 指定配置文件类型
+        prefix: gateway # 对应 DataId
+        group: dev # 对应 GroupId
+      # 网关的配置
+    gateway:
+      discovery:
+        locator:
+          enabled: true  #表明gateway开启服务注册和发现的功能，
+          lowerCaseServiceId: true
+#      routes:
+#        - id: service-provider
+#          uri: lb://service-provider
+#          predicates:
+#            - Path=/provider/**
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
