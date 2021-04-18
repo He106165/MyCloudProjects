@@ -1,0 +1,21 @@
+#服务提供者server provider
+server:
+  port: 8006
+spring:
+  application:
+    name: ACTIVITI
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  activiti:
+    #记录历史等级 可配置的历史级别有none, acitivity, audit, all
+    history-level: full
+    #校验流程文件，默认校验resources下的processes文件夹里的流程文件
+    check-process-definitions: false
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 106165
+#    jdbc-url: jdbc:mysql://127.0.0.1:3306/activiti?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+
