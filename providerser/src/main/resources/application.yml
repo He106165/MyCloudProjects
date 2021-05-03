@@ -1,0 +1,19 @@
+###服务提供者server provider
+server:
+  port: 8081
+spring:
+  application:
+    name: providerser
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:7878
+        port: 9999
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+

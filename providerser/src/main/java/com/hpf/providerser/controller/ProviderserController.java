@@ -1,11 +1,11 @@
 package com.hpf.providerser.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName ProviderserController
@@ -20,6 +20,7 @@ import java.util.List;
 public class ProviderserController {
 
     @RequestMapping(value="/getUserList")
+    @SentinelResource("getUserList")
     public List<String> getUserList(){
         log.info("开始调用start");
         List<String> result=new ArrayList<>();
