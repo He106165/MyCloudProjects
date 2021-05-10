@@ -1,0 +1,1 @@
+java -Dserver.port=7878 -jar sentinel-dashboard-1.6.3.jar

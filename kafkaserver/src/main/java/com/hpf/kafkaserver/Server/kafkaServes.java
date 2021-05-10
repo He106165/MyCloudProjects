@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import java.util.Properties;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @ClassName kafkaServes
@@ -63,30 +65,36 @@ public class kafkaServes {
 
 
     public static void main(String[] args){
-        Properties properties = new Properties();
-        properties.put("bootstrap.servers", "192.168.164.131:9092");
-        properties.put("acks", "all");
-        properties.put("retries", 0);
-        properties.put("batch.size", 16384);
-        properties.put("linger.ms", 1);
-        properties.put("buffer.memory", 33554432);
-        properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        Producer<String, String> producer = null;
-        try {
-            producer = new KafkaProducer<String, String>(properties);
-//            producer.send(new ProducerRecord<String, String>("HelloWorld","aaaaaaaaaaaa"));
-            for (int i = 0; i < 100; i++) {
-                String msg = "This is Message " + i;
-                producer.send(new ProducerRecord<String, String>("myTopic", msg));
-                System.out.println("Sent:" + msg);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            producer.close();
-        }
-
+//        Properties properties = new Properties();
+//        properties.put("bootstrap.servers", "192.168.164.131:9092");
+//        properties.put("acks", "all");
+//        properties.put("retries", 0);
+//        properties.put("batch.size", 16384);
+//        properties.put("linger.ms", 1);
+//        properties.put("buffer.memory", 33554432);
+//        properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+//        properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+//        Producer<String, String> producer = null;
+//        try {
+//            producer = new KafkaProducer<String, String>(properties);
+////            producer.send(new ProducerRecord<String, String>("HelloWorld","aaaaaaaaaaaa"));
+//            for (int i = 0; i < 100; i++) {
+//                String msg = "This is Message " + i;
+//                producer.send(new ProducerRecord<String, String>("myTopic", msg));
+//                System.out.println("Sent:" + msg);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//
+//        } finally {
+//            producer.close();
+//
+        Map<String,Integer> identityMap = new IdentityHashMap<>();
+        identityMap.put(new String("a"),2);
+        identityMap.put(new String("a"),1);
+        identityMap.put("a",3);
+        identityMap.put("b",2);
+        System.out.println(identityMap.size());
+        System.out.println(identityMap.get("a"));
     }
 }
