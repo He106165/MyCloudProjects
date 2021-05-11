@@ -54,6 +54,8 @@
         <module>consumerser</module>
         <module>zuul-server</module>
         <module>activiti</module>
+        <module>auth-server</module>
+        <module>kafkaserver</module>
     </modules>
 
 </project>
